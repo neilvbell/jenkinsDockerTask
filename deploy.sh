@@ -7,9 +7,10 @@
 #Create a volume
 
 #Build flask-app and mysql images
-	cd ~/dockerfiles2/dockerfileexercise/Task2/db/
+	cd db/
 	docker build -t mysql_img .
-	cd ~/dockerfiles2/dockerfileexercise/Task2/flask-app/
+ 	cd ..
+  	cd flask-app/
 	docker build -t flask_new_img .
 
 #Run mysql container
@@ -18,8 +19,9 @@
 	docker run -dit --network my-network --name flask-app flask_new_img
 
 #Run nginx from official image (but need nginx.conf edited)
-	cd ~/dockerfiles2/dockerfileexercise/Task2/nginx/
+	cd ..
+ 	cd nginx/
 	docker run -dit -p 80:80 --network my-network -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf --name nginx2 nginx
 #Show all containers
-	docker ps
+	docker ps -a
 exit 0
